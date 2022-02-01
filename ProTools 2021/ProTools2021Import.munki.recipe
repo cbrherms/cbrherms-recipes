@@ -106,9 +106,11 @@ fi</string>
     <array>
         <dict>
             <key>Comment</key>
-            <string>Get the Pro Tools HD Driver filename</string>
+            <string>Get the Pro Tools HD Driver filename and assign the DMG path to dmg_path</string>
             <key>Arguments</key>
             <dict>
+                <key>dmg_path</key>
+                <string>%found_filename%</string>
                 <key>pattern</key>
                 <string>%dmg_path%/Driver Installers/*.pkg</string>
             </dict>
