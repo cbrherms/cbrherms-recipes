@@ -3,25 +3,40 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads latest version of DaVinci Resolve Studio 18.
+    <string>Downloads latest version of DaVinci Resolve Studio 18 by default. You can modify this to download any available
+			legacy version as well. You can also configure this to download Studio and Lite.
+		
+			This recipe requires the use of the fantastic BlackMagicURLProvider processor, created by venerable timsutton. 
+			You will need to add this processor to your autopkg instance. The Processor can be found on his Github:
+			https://github.com/autopkg/timsutton-recipes/tree/master/Blackmagic . You will need to add his repo in order for
+	    		this recipe to function.
 
-This product requires registration in order to download, so
-you _must_ override all input variables beginning with 'REG_'
-and they must contain data.
+			This product requires registration in order to download, so
+			you _must_ override all input variables beginning with 'REG_'
+			and they must contain data.
 
-Notably, REG_COUNTRY must contain sane values:
-- REG_COUNTRY is of the form 'us', 'ca', etc.
-</string>
+			Notably, REG_COUNTRY must contain sane values:
+			- REG_COUNTRY is of the form 'us', 'ca', 'au', etc.
+	</string>
     <key>Identifier</key>
     <string>com.github.cbrherms.download.davinciresolvestudio18</string>
     <key>Input</key>
     <dict>
+        <!-- You will need to update the protuct version with to DaVinci Resolve, DaVinci 
+		Resolve Lite or DaVinci Resolve Studio -->
+        <key>PRODUCT_VERSION</key>
+        <string>DaVinci Resolve Studio</string>
         <!-- Version 14 updates _may_ contain 'Update' in the title, but
         we also want to avoid capturing the 'Studio Update' versions -->
         <key>PRODUCT_NAME_PATTERN</key>
         <string>^DaVinci Resolve Studio (?P&lt;version&gt;18(\.\d+)*)( Update)*$</string>
+        <!-- This also needs to contain either DaVinci Resolve, DaVinci Resolve Lite or 
+		DaVinci Resolve Studio. in between the () you will find a number representing the version
+		you wish to package. Enter here 14, 15, 16, 17 or 18 -->
         <key>NAME</key>
         <string>DaVinciResolveStudio18</string>
+        <!-- Needs to read DaVinciResolvePRODUCTVERSION, eg: 
+		DaVinciResolveLite17 or DaVinciResolve18 or DaVinciResolveStudio18 -->
         <key>REG_FIRSTNAME</key>
         <string></string>
         <key>REG_LASTNAME</key>
@@ -34,6 +49,9 @@ Notably, REG_COUNTRY must contain sane values:
         <string></string>
         <key>REG_COUNTRY</key>
         <string></string>
+        <!-- You MUST fill in all the above reg fields. You do not need to already have a account
+	It is advisable tgough to fill in details linked to your organisation. Having a org email 
+	and phone number is specifically advised.-->
     </dict>
     <key>MinimumVersion</key>
     <string>2.0.0</string>
@@ -47,7 +65,7 @@ Notably, REG_COUNTRY must contain sane values:
                 <key>product_name_pattern</key>
                 <string>%PRODUCT_NAME_PATTERN%</string>
                 <key>product_name</key>
-                <string>DaVinci Resolve</string>
+                <string>%PRODUCT_VERSION%</string>
                 <key>registration_info</key>
                 <dict>
                     <key>firstname</key>
